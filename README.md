@@ -1,4 +1,4 @@
-# flappy-girls-godot
+# flappy-bird-godot
 고도엔진 연습삼아 만들어본 플래피 버드<br/>
 개발도구 : Godot 4.2.1<br/>
 개발언어 : C#<br/>
