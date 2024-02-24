@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7ava4ligqww8"]
+
+[ext_resource type="Script" path="res://flappy-bird/scripts/BirdPortrait.cs" id="1_rosu6"]
+[ext_resource type="FontFile" uid="uid://cct61o865aun0" path="res://flappy-bird/pixel_font.ttf" id="2_mi6np"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f880k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3crrp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7jyg2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tx4nv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ist2e"]
+
+[node name="BirdPortrait" type="Panel" node_paths=PackedStringArray("selcted", "birdTexture", "coinLabel", "button")]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 50.0
+offset_bottom = 50.0
+script = ExtResource("1_rosu6")
+selcted = NodePath("Selected")
+birdTexture = NodePath("CenterContainer/TextureRect")
+coinLabel = NodePath("CoinLabel")
+button = NodePath("Button")
+
+[node name="Selected" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 0.454902)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="CoinLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_mi6np")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f880k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3crrp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7jyg2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tx4nv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ist2e")

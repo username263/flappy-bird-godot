@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dswqm13j886nc"]
+
+[ext_resource type="PackedScene" uid="uid://ttslmlnw2r84" path="res://flappy-bird/scenes/BaseBird.tscn" id="1_r6u27"]
+[ext_resource type="SpriteFrames" uid="uid://bfljsfjv6fw0i" path="res://flappy-bird/resources/RedBirdSpriteFrames.tres" id="2_enxk4"]
+
+[node name="Bird" instance=ExtResource("1_r6u27")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_enxk4")
+frame = 0
+frame_progress = 0.0

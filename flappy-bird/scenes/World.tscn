@@ -1,0 +1,111 @@
+[gd_scene load_steps=10 format=3 uid="uid://br0vll55w6g0r"]
+
+[ext_resource type="PackedScene" uid="uid://7dbqekd1h8vk" path="res://flappy-bird/scenes/Pipes.tscn" id="1_d271f"]
+[ext_resource type="Script" path="res://flappy-bird/scripts/GameLogic.cs" id="1_g5ldi"]
+[ext_resource type="Script" path="res://flappy-bird/scripts/PipesManager.cs" id="1_m852u"]
+[ext_resource type="Script" path="res://flappy-bird/scripts/Background.cs" id="2_0f3pf"]
+[ext_resource type="PackedScene" uid="uid://2i8e3mu2nqqn" path="res://flappy-bird/scenes/BackgroundLayer.tscn" id="3_po3pb"]
+[ext_resource type="PackedScene" uid="uid://b1m4otemmswne" path="res://flappy-bird/scenes/GroundLayer.tscn" id="6_anoti"]
+[ext_resource type="FontFile" uid="uid://cct61o865aun0" path="res://flappy-bird/pixel_font.ttf" id="7_1j5vv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rtvr"]
+size = Vector2(336, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0unof"]
+size = Vector2(288, 512)
+
+[node name="World" type="Node2D"]
+
+[node name="Logic" type="Node2D" parent="." node_paths=PackedStringArray("startPoint", "pipesManager", "background", "scoreLabel", "gameOver", "retryButton", "menuButton")]
+script = ExtResource("1_g5ldi")
+startPoint = NodePath("../StartPoint")
+pipesManager = NodePath("../ParallaxBackground/PipesManager")
+background = NodePath("../ParallaxBackground")
+gameSpeed = 60.0
+scoreLabel = NodePath("../CanvasLayer/VBoxContainer/ScoreLabel")
+gameOver = NodePath("../CanvasLayer/GameOver")
+retryButton = NodePath("../CanvasLayer/GameOver/CenterContainer/VBoxContainer/RetryButton")
+menuButton = NodePath("../CanvasLayer/GameOver/CenterContainer/VBoxContainer/MenuButton")
+
+[node name="StartPoint" type="Marker2D" parent="."]
+position = Vector2(128, 256)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_0f3pf")
+
+[node name="BackgroundLayer" parent="ParallaxBackground" instance=ExtResource("3_po3pb")]
+
+[node name="PipesManager" type="Node2D" parent="ParallaxBackground"]
+script = ExtResource("1_m852u")
+pipesPrefab = ExtResource("1_d271f")
+spawnDelay = 3.0
+spawnPosX = 408.0
+minSpawnPosY = 80.0
+maxSpawnPosY = 368.0
+despawnPosX = -56.0
+
+[node name="GroundLayer" parent="ParallaxBackground" instance=ExtResource("6_anoti")]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(144, 504)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2rtvr")
+metadata/_edit_lock_ = true
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(144, 256)
+shape = SubResource("RectangleShape2D_0unof")
+action = "jump"
+visibility_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = -432.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_1j5vv")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+
+[node name="GameOver" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOver/CenterContainer"]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/GameOver/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_1j5vv")
+theme_override_font_sizes/font_size = 20
+text = "Retry"
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/GameOver/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_1j5vv")
+theme_override_font_sizes/font_size = 20
+text = "Menu"

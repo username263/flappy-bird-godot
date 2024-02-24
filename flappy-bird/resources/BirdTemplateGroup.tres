@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://e6xivgyiw2r5"]
+
+[ext_resource type="Script" path="res://flappy-bird/scripts/BirdTemplateGroup.cs" id="1_maydy"]
+[ext_resource type="Resource" uid="uid://grmv5b54cqgl" path="res://flappy-bird/resources/YellowBirdTemplate.tres" id="2_rj7q6"]
+[ext_resource type="Resource" uid="uid://ik28hop5hfyg" path="res://flappy-bird/resources/BlueBirdTemplate.tres" id="3_l7e48"]
+[ext_resource type="Resource" uid="uid://bubrnu3iopeff" path="res://flappy-bird/resources/RedBirdTemplate.tres" id="4_5siyc"]
+
+[resource]
+script = ExtResource("1_maydy")
+templates = Array[Resource]([ExtResource("2_rj7q6"), ExtResource("3_l7e48"), ExtResource("4_5siyc")])

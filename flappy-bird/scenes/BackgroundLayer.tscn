@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://2i8e3mu2nqqn"]
+
+[ext_resource type="Texture2D" uid="uid://ov1fn70guq7m" path="res://flappy-bird/sprites/background-day.png" id="1_0p3d4"]
+
+[node name="BackgroundLayer" type="ParallaxLayer"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(120, 256)
+texture = ExtResource("1_0p3d4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(696, 256)
+texture = ExtResource("1_0p3d4")

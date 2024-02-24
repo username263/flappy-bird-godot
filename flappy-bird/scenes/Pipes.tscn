@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://7dbqekd1h8vk"]
+
+[ext_resource type="Texture2D" uid="uid://bp4hhwquqma22" path="res://flappy-bird/sprites/pipe-green.png" id="1_7e825"]
+[ext_resource type="Script" path="res://flappy-bird/scripts/Pipes.cs" id="1_ollbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqq1x"]
+size = Vector2(48, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qpmq"]
+size = Vector2(48, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llaif"]
+size = Vector2(24, 256)
+
+[node name="Pipes" type="Node2D"]
+script = ExtResource("1_ollbx")
+
+[node name="TopPipe" type="StaticBody2D" parent="." groups=["Pipe"]]
+position = Vector2(0, -50)
+
+[node name="Sprite2D" type="Sprite2D" parent="TopPipe"]
+texture = ExtResource("1_7e825")
+offset = Vector2(0, -160)
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe"]
+position = Vector2(0, -160)
+shape = SubResource("RectangleShape2D_lqq1x")
+debug_color = Color(1, 0.6, 0.184314, 0.419608)
+
+[node name="BottomPipe" type="StaticBody2D" parent="." groups=["Pipe"]]
+position = Vector2(0, 50)
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomPipe"]
+texture = ExtResource("1_7e825")
+offset = Vector2(0, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
+position = Vector2(0, 160)
+shape = SubResource("RectangleShape2D_6qpmq")
+debug_color = Color(1, 0.6, 0.184314, 0.419608)
+
+[node name="PassArea" type="Area2D" parent="." groups=["Pass"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassArea"]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_llaif")

@@ -1,0 +1,141 @@
+[gd_scene load_steps=9 format=3 uid="uid://ch4yroxxkqmma"]
+
+[ext_resource type="PackedScene" uid="uid://2i8e3mu2nqqn" path="res://flappy-bird/scenes/BackgroundLayer.tscn" id="1_goe8u"]
+[ext_resource type="Script" path="res://flappy-bird/scripts/MenuLogic.cs" id="1_prgk7"]
+[ext_resource type="PackedScene" uid="uid://b1m4otemmswne" path="res://flappy-bird/scenes/GroundLayer.tscn" id="2_fuir2"]
+[ext_resource type="Script" path="res://flappy-bird/scripts/Background.cs" id="2_q44c7"]
+[ext_resource type="Script" path="res://flappy-bird/scripts/MainPage.cs" id="5_jnimd"]
+[ext_resource type="Script" path="res://flappy-bird/scripts/ShopPage.cs" id="6_svuon"]
+[ext_resource type="FontFile" uid="uid://cct61o865aun0" path="res://flappy-bird/pixel_font.ttf" id="7_a2u7x"]
+[ext_resource type="PackedScene" uid="uid://b7ava4ligqww8" path="res://flappy-bird/scenes/BirdPortrait.tscn" id="8_enfla"]
+
+[node name="Menu" type="Node2D" node_paths=PackedStringArray("background", "mainPage", "shopPage")]
+script = ExtResource("1_prgk7")
+background = NodePath("ParallaxBackground")
+mainPage = NodePath("CanvasLayer/MainPage")
+shopPage = NodePath("CanvasLayer/ShopPage")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_q44c7")
+
+[node name="BackgroundLayer" parent="ParallaxBackground" instance=ExtResource("1_goe8u")]
+
+[node name="GroundLayer" parent="ParallaxBackground" instance=ExtResource("2_fuir2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainPage" type="CenterContainer" parent="CanvasLayer" node_paths=PackedStringArray("playButton", "shopButton", "quitButton")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_jnimd")
+playButton = NodePath("VBoxContainer/PlayButton")
+shopButton = NodePath("VBoxContainer/ShopButton")
+quitButton = NodePath("VBoxContainer/QuitButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainPage"]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/MainPage/VBoxContainer"]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Play"
+
+[node name="ShopButton" type="Button" parent="CanvasLayer/MainPage/VBoxContainer"]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Shop"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/MainPage/VBoxContainer"]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Quit"
+
+[node name="ShopPage" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("coinLabel", "birdPortraits", "backButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_svuon")
+coinLabel = NodePath("Top/CoinLabel")
+birdPortraits = [NodePath("Center/GridContainer/BirdPortrait"), NodePath("Center/GridContainer/BirdPortrait2"), NodePath("Center/GridContainer/BirdPortrait3"), NodePath("Center/GridContainer/BirdPortrait4"), NodePath("Center/GridContainer/BirdPortrait5"), NodePath("Center/GridContainer/BirdPortrait6"), NodePath("Center/GridContainer/BirdPortrait7"), NodePath("Center/GridContainer/BirdPortrait8")]
+backButton = NodePath("Bottom/BackButton")
+
+[node name="Top" type="CenterContainer" parent="CanvasLayer/ShopPage"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 14.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="CoinLabel" type="Label" parent="CanvasLayer/ShopPage/Top"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_a2u7x")
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Center" type="CenterContainer" parent="CanvasLayer/ShopPage"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.187
+anchor_right = 1.0
+anchor_bottom = 0.797
+offset_top = 0.255997
+offset_bottom = -0.0640259
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ShopPage/Center"]
+layout_mode = 2
+columns = 4
+
+[node name="BirdPortrait" parent="CanvasLayer/ShopPage/Center/GridContainer" instance=ExtResource("8_enfla")]
+layout_mode = 2
+
+[node name="BirdPortrait2" parent="CanvasLayer/ShopPage/Center/GridContainer" instance=ExtResource("8_enfla")]
+layout_mode = 2
+
+[node name="BirdPortrait3" parent="CanvasLayer/ShopPage/Center/GridContainer" instance=ExtResource("8_enfla")]
+layout_mode = 2
+
+[node name="BirdPortrait4" parent="CanvasLayer/ShopPage/Center/GridContainer" instance=ExtResource("8_enfla")]
+layout_mode = 2
+
+[node name="BirdPortrait5" parent="CanvasLayer/ShopPage/Center/GridContainer" instance=ExtResource("8_enfla")]
+layout_mode = 2
+
+[node name="BirdPortrait6" parent="CanvasLayer/ShopPage/Center/GridContainer" instance=ExtResource("8_enfla")]
+layout_mode = 2
+
+[node name="BirdPortrait7" parent="CanvasLayer/ShopPage/Center/GridContainer" instance=ExtResource("8_enfla")]
+layout_mode = 2
+
+[node name="BirdPortrait8" parent="CanvasLayer/ShopPage/Center/GridContainer" instance=ExtResource("8_enfla")]
+layout_mode = 2
+
+[node name="Bottom" type="CenterContainer" parent="CanvasLayer/ShopPage"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="CanvasLayer/ShopPage/Bottom"]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+text = "Back"

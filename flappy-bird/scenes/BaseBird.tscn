@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=3 uid="uid://ttslmlnw2r84"]
+
+[ext_resource type="Script" path="res://flappy-bird/scripts/Bird.cs" id="1_dii58"]
+[ext_resource type="Texture2D" uid="uid://di1a0ty1s21h7" path="res://flappy-bird/sprites/bluebird-downflap.png" id="2_dnssa"]
+[ext_resource type="Texture2D" uid="uid://y2w7rxv561jb" path="res://flappy-bird/sprites/bluebird-midflap.png" id="3_i5edy"]
+[ext_resource type="Texture2D" uid="uid://61ae8eh4c03g" path="res://flappy-bird/sprites/bluebird-upflap.png" id="4_rxwp5"]
+[ext_resource type="AudioStream" uid="uid://bow3xge3apt8h" path="res://flappy-bird/audio/wing.wav" id="5_h0ci7"]
+[ext_resource type="AudioStream" uid="uid://bkbpw5dkcq63o" path="res://flappy-bird/audio/point.wav" id="6_85avu"]
+[ext_resource type="AudioStream" uid="uid://nkx4jn4rlxtw" path="res://flappy-bird/audio/hit.wav" id="7_ml0fl"]
+[ext_resource type="AudioStream" uid="uid://2lxgbyo17bfl" path="res://flappy-bird/audio/die.wav" id="8_ms3oe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ml3xb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dnssa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i5edy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rxwp5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lvxta"]
+radius = 12.0
+
+[node name="Bird" type="CharacterBody2D"]
+script = ExtResource("1_dii58")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ml3xb")
+autoplay = "default"
+frame = 1
+frame_progress = 0.0654443
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lvxta")
+
+[node name="JumpSfxPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_h0ci7")
+
+[node name="PassSfxPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_85avu")
+
+[node name="HitSfxPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ml0fl")
+
+[node name="FalldownSfxPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ms3oe")
